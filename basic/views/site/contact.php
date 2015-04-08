@@ -2,6 +2,10 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
+use kartik\widgets\ColorInput;
+use kartik\widgets\DateTimePicker;
+use kartik\widgets\FileInput;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -37,8 +41,47 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-8">
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                <?php
+                echo $form->field($model, 'email')->widget(ColorInput::classname(), [
+                'options' => [
+                    'placeholder' => '赶紧选颜色',
+                    'readonly' => true,
+                    ],'pluginOptions' => [
+                        'chooseText' => "别点我",
+                        'cancelText' => "云姐真棒",
+                    ],
+
+                ]);?>
+                <?php
+                echo $form->field($model, 'name')->widget(DateTimePicker::classname(), [
+                    'options' => ['placeholder' => '赶紧填时间','readonly'=>true],
+                    'pluginOptions' => [
+                        'uploadUrl' => Url::to(['/a']),
+                        'format' => 'yyyy-mm-dd HH:ii:00',
+                    ]
+                ]);
+                ?>
+                <?php
+                echo $form->field($model, 'subject[]')->widget(FileInput::classname(), [
+                    'options'=>[
+                        'multiple'=>true
+                    ],
+                    'pluginOptions' => [
+                        'uploadUrl' => Url::to(['/site/file-upload']),
+                        'dropZoneTitle' => "我是小提莫",
+                        'maxFileCount' => 10,
+                        'initialPreview'=>[
+                            Html::img("/images/moon.jpg", ['class'=>'file-preview-image', 'alt'=>'The Moon', 'title'=>'The Moon']),
+                            Html::img("/images/earth.jpg", ['class'=>'file-preview-image', 'alt'=>'The Earth', 'title'=>'The Earth']),
+                        ],
+                        'initialCaption'=>"The Moon and the Earth",
+                        'overwriteInitial'=>false,
+//                        'initialPreviewShowDelete' => true,
+                    ]
+                ]);
+                ?>
                 <?= $form->field($model, 'name') ?>
                 <?= $form->field($model, 'email') ?>
                 <?= $form->field($model, 'subject') ?>

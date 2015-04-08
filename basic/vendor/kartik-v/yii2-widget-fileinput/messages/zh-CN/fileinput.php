@@ -17,11 +17,6 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Note:' => 'Not:',
-    'multiple file upload' => 'dosyaları yükle',
-    'file preview and multiple file upload' => 'önizle ve dosyaları yükle',
-    'Your browser does not support {validation}. Try an alternative or more recent browser to access these features.' => 'Browserınız  {validation} desteklemiyor. Bu özellikleri kullanabilmek için lütfen alternatif veya güncel bir browser ile bağlanın.',
-    'Browse' => 'Gözat',
-    'Remove' => 'Sil',
-    'Upload' => 'Yükle',
+    'Browse' => '野生提莫',
+    'Remove' => '看什么看',
 ];
