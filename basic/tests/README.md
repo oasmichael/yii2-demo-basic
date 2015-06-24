@@ -114,6 +114,4 @@ more details about writing and running acceptance, functional and unit tests.
 java -jar selenium-server-standalone-2.46.0.jar -role hub
 firefox
 java -jar selenium-server-standalone-2.46.0.jar -role node  -hub http://localhost:4444/grid/register
-chrome
-java -jar selenium-server-standalone-2.46.0.jar -role node  -hub http://localhost:4444/grid/register -Dwebdriver.chrome.driver=/tmp/chromedriver
 
