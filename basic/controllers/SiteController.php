@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -92,5 +93,12 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionTest()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSONP;
+        $arr = ["data" => ["name" => "haha1"], "callback" => "haoba"];
+        return $arr;
     }
 }
