@@ -1,3 +1,39 @@
+Version 3.0.6
+=============
+**Date:** 15-Jul-2015
+
+1. (enh #338): Various enhancements for grid excel export formatting.
+
+Version 3.0.5
+=============
+**Date:** 07-Jul-2015
+
+1. (enh #322): Send serialized `data-key` when ExpandRowColumn has a composite key.
+2. (enh #323): Prevent `pjax:complete` init script being called multiple times.
+3. (enh #325): Various enhancements to client script registrations.
+4. (enh #326): Zero width joiner for excel exports.
+5. (enh #328): Add Turkish translations.
+6. (enh #334): Add grid grouping functionalities.
+
+Version 3.0.4
+=============
+**Date:** 24-Jun-2015
+
+1. (enh #320): Trim trailing whitespaces from text/csv exports.
+2. (enh #321): Add Indonesian translations.
+
+Version 3.0.3
+=============
+**Date:** 15-Jun-2015
+
+1. (enh #300): Add Lithuanian Translations.
+2. (enh #301): Add Greek Translations.
+3. (enh #310): Updated German Translations.
+4. (enh #311): Better defaulting of Select2 `pluginOptions['width']`.
+5. (enh #313): Add Czech translations.
+6. (enh #317): Add missing spanish translations.
+7. (enh #318): Fix post pjax `setTimeout` JS function.
+
 Version 3.0.2
 =============
 **Date:** 11-May-2015

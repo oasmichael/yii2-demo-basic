@@ -22,8 +22,7 @@
         "yiisoft/yii2-mongodb": "~2.0",
         "kartik-v/yii2-widgets": "*",
         "nkovacs/yii2-datetimepicker": "*",
-        "arturoliveira/yii2-excelview": "*",
-        "kartik-v/yii2-builder": "dev-master"
+        "arturoliveira/yii2-excelview": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

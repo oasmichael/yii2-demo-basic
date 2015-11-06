@@ -2,7 +2,7 @@
  * @package   yii2-grid
  * @author    Kartik Visweswaran <kartikv2@gmail.com>
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
- * @version   3.0.2
+ * @version   3.0.6
  *
  * Grid Export Validation Module for Yii's Gridview. Supports export of
  * grid data as CSV, HTML, or Excel.
@@ -116,7 +116,7 @@
                 head = self.config.colHeads;
             } else {
                 $table.find('thead tr th').each(function (i, v) {
-                    var str = $(this).text(), slugStr = slug(str);
+                    var str = $(this).text().trim(), slugStr = slug(str);
                     head[i] = (!self.config.slugColHeads || isEmpty(slugStr)) ? 'col_' + i : slugStr;
                 });
             }
@@ -124,7 +124,7 @@
                 data[i] = {};
                 $(this).children('td').each(function (j, w) {
                     var col = head[j];
-                    data[i][col] = $(this).text();
+                    data[i][col] = $(this).text().trim();
                 });
             });
             return data;
@@ -313,7 +313,7 @@
             var txt = '"' + $rows.map(function (i, row) {
                     var $row = $(row), $cols = $row.find(self.columns);
                     return $cols.map(function (j, col) {
-                        var $col = $(col), text = $col.text();
+                        var $col = $(col), text = $col.text().trim();
                         return text.replace('"', '""'); // escape double quotes
                     }).get().join(tmpColDelim);
                 }).get().join(tmpRowDelim)
@@ -327,9 +327,15 @@
             self.download('json', out);
         },
         exportEXCEL: function () {
-            var self = this, $table = self.clean('xls'), cfg = self.config;
-            var css = (cfg.cssFile && self.config.cssFile.length) ? '<link href="' + self.config.cssFile + '" rel="stylesheet">' : '';
-            var xls = templates.excel.replace('{encoding}', self.encoding).replace('{css}', css).replace('{worksheet}',
+            var self = this, $table = self.clean('xls'), cfg = self.config, xls, $td,
+                css = (cfg.cssFile && self.config.cssFile.length) ? '<link href="' + self.config.cssFile + '" rel="stylesheet">' : '';
+            $table.find('td[data-raw-value]').each(function() {
+                $td = $(this);
+                if ($td.css('mso-number-format') || $td.css('mso-number-format') === 0 || $td.css('mso-number-format') === '0') {
+                    $td.html($td.attr('data-raw-value')).removeAttr('data-raw-value');
+                }
+            });
+            xls = templates.excel.replace('{encoding}', self.encoding).replace('{css}', css).replace('{worksheet}',
                 self.config.worksheet).replace('{data}', $('<div />').html($table).html()).replace(/"/g, '\'');
             self.download('xls', xls);
         }

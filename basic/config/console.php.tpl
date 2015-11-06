@@ -14,9 +14,6 @@ return [
         'gii' => 'yii\gii\Module',
     ],
     'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
         'log' => [
             'targets' => [
                 [
@@ -24,6 +21,35 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'view' => [
+            'renderers' => [
+                'html' => [
+                    'class' => 'yii\smarty\ViewRenderer',
+                    'options' => [
+                        'left_delimiter' => '{{',
+                        'right_delimiter' => '}}',
+                        'config_dir' => '../views/config',
+                    ]
+                    //'cachePath' => '@runtime/Smarty/cache',
+                ],
+            ],
+        ],
+        'cache' => [
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true,
+            'keyPrefix' =>'vendor_',
+            'servers' => [
+                [
+                    'host' => '10.1.9.164',
+                    'port' => 11212,
+                    'weight' => 1,
+                ],
+            ],
+        ],
+        'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            'dsn' => 'mongodb://10.1.9.164:27019/vendor',
         ],
         'db' => $db,
     ],

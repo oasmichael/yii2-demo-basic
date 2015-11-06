@@ -109,9 +109,3 @@ codecept run acceptance --coverage-html --coverage-xml
 
 Please refer to [Codeception tutorial](http://codeception.com/docs/01-Introduction) for
 more details about writing and running acceptance, functional and unit tests.
-
-#selenium
-java -jar selenium-server-standalone-2.46.0.jar -role hub
-firefox
-java -jar selenium-server-standalone-2.46.0.jar -role node  -hub http://localhost:4444/grid/register
-
